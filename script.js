@@ -1,29 +1,35 @@
 const dataInput = document.getElementById("data-input");
 const spaceLength = document.getElementById("space-length");
-const targetRegex = document.getElementById("target-regex");
 const showArea = document.getElementById("show-area");
 
-const set_text = () => {
+let activeChar = null;
+const setActiveChar = () => {
+    if (activeChar !== null) {
+        activeChar.classList.toggle("active-char");
+    }
+    activeChar = document.activeElement;
+    activeChar.classList.toggle("active-char");
+    spaceLength.value = parseInt(activeChar.style.margin.replace("px", ""));
+};
+
+const setText = () => {
     showArea.innerHTML = "";
     for (c of dataInput.value) {
         let span = document.createElement("span");
         span.textContent = c;
+        span.addEventListener("focus", setActiveChar);
+        span.setAttribute("tabindex", "0");
         showArea.appendChild(span);
     }
 };
 
-const update_length = () => {
+const updateLength = () => {
     const value = `${spaceLength.value}px`;
-    const regex = new RegExp(targetRegex.value);
-    for (span of showArea.children) {
-        if (regex.test(span.textContent.toString())) {
-            span.style.margin = value;
-        }
-    }
+    activeChar.style.margin = value;
 };
 
-dataInput.addEventListener("input", set_text);
-spaceLength.addEventListener("input", update_length);
+dataInput.addEventListener("input", setText);
+spaceLength.addEventListener("input", updateLength);
 
-set_text();
-update_length();
+setText();
+updateLength();
