@@ -1,0 +1,10 @@
+:root {
+    --space-length: 0px;
+}
+
+span {
+    padding: 0;
+    margin: 0;
+    margin-right: var(--space-length);
+    font-size: 200px;
+}
