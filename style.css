@@ -1,6 +1,6 @@
 ::root {
     --font-size: 200px;
-    --font-family: cursive;
+    --font-family: initial;
 }
 
 span {
