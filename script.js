@@ -72,3 +72,4 @@ document.addEventListener("mouseup", onMouseUp);
 
 setText();
 setFontSize();
+setFontFamily();
