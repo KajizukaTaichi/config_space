@@ -1,7 +1,8 @@
 span {
     user-select: none;
-    padding: 0;
+    margin-left: 0px;
     font-size: 200px;
+    padding: 0ox;
 }
 
 .active-char {
