@@ -66,6 +66,7 @@ const setFontFamily = () => {
 
 dataInput.addEventListener("input", setText);
 fontSize.addEventListener("input", setFontSize);
+fontFamily.addEventListener("input", setFontFamily);
 document.addEventListener("mousemove", onMouseMove);
 document.addEventListener("mouseup", onMouseUp);
 
