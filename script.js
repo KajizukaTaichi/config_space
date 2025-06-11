@@ -13,12 +13,11 @@ const set_text = () => {
 };
 
 const update_length = () => {
-    console.log(targetRegex.value);
     const value = `${spaceLength.value}px`;
     const regex = new RegExp(targetRegex.value);
     for (span of showArea.children) {
         if (regex.test(span.textContent.toString())) {
-            span.style.marginRight = value;
+            span.style.margin = value;
         }
     }
 };
