@@ -1,5 +1,6 @@
 const dataInput = document.getElementById("data-input");
-const spaceLength = document.getElementById("space-length");
+const targetRegex = document.getElementById("space-length");
+const spaceLength = document.getElementById("target-regex");
 const showArea = document.getElementById("show-area");
 
 const set_text = () => {
@@ -13,7 +14,12 @@ const set_text = () => {
 
 const update_length = () => {
     const value = `${spaceLength.value}px`;
-    document.documentElement.style.setProperty("--space-length", value);
+    const regex = new RegExp(targetRegex.value);
+    for (span of showArea.children) {
+        if (span.value.match(regex)) {
+            span.style.marginRight = value;
+        }
+    }
 };
 
 dataInput.addEventListener("input", set_text);
