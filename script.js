@@ -1,15 +1,36 @@
 const dataInput = document.getElementById("data-input");
-const spaceLength = document.getElementById("space-length");
 const showArea = document.getElementById("show-area");
 
+let startX = 0;
+let isDragging = false;
 let activeChar = null;
+
+const onMouseDown = (e) => {
+    startX = e.clientX;
+    isDragging = true;
+};
+
+document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    const endX = e.clientX;
+    const diff = endX - startX;
+    const value = `${diff}px`;
+    activeChar.style.margin = value;
+});
+
+document.addEventListener("mouseup", () => {
+    if (isDragging) {
+        isDragging = false;
+    }
+});
+
 const setActiveChar = () => {
     if (activeChar !== null) {
         activeChar.classList.toggle("active-char");
     }
     activeChar = document.activeElement;
+    activeChar.addEventListener("mousedown", onMouseDown);
     activeChar.classList.toggle("active-char");
-    spaceLength.value = parseInt(activeChar.style.margin.replace("px", ""));
 };
 
 const setText = () => {
@@ -23,13 +44,5 @@ const setText = () => {
     }
 };
 
-const updateLength = () => {
-    const value = `${spaceLength.value}px`;
-    activeChar.style.margin = value;
-};
-
 dataInput.addEventListener("input", setText);
-spaceLength.addEventListener("input", updateLength);
-
 setText();
-updateLength();
