@@ -1,9 +1,11 @@
 ::root {
     --font-size: 200px;
+    --font-family: cursive;
 }
 
 span {
     font-size: var(--font-size);
+    font-family: var(--font-family);
     user-select: none;
     padding: 0px;
 }
