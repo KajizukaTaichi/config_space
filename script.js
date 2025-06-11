@@ -14,8 +14,10 @@ document.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
     const endX = e.clientX;
     const diff = endX - startX;
-    const value = `${diff}px`;
-    activeChar.style.margin = value;
+    const orgin = parseInt(activeChar.style.marginLeft.replace("px", ""));
+    const value = `${orgin + diff}px`;
+    activeChar.style.marginLeft = value;
+    startX = e.clientX;
 });
 
 document.addEventListener("mouseup", () => {
@@ -38,6 +40,7 @@ const setText = () => {
     for (c of dataInput.value) {
         let span = document.createElement("span");
         span.textContent = c;
+        span.style.marginLeft = "0px";
         span.addEventListener("focus", setActiveChar);
         span.setAttribute("tabindex", "0");
         showArea.appendChild(span);
