@@ -1,9 +1,17 @@
+::root {
+    --font-size: 200px;
+}
+
 span {
+    font-size: var(--font-size);
     user-select: none;
-    font-size: 200px;
     padding: 0px;
 }
 
 .active-char {
     outline: 2px solid #4caf50;
+}
+
+#show-area {
+    word-break: break-all;
 }
