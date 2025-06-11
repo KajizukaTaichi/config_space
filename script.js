@@ -20,6 +20,12 @@ const onMouseMove = (e) => {
     startX = e.clientX;
 };
 
+const onMouseUp = () => {
+    if (isDragging) {
+        isDragging = false;
+    }
+};
+
 const activateChar = () => {
     if (activeChar !== null) {
         activeChar.classList.toggle("active-char");
@@ -39,18 +45,17 @@ const deactivateChar = () => {
 
 const setText = () => {
     showArea.innerHTML = "";
-    for (c of dataInput.value) {
-        let span = document.createElement("span");
-        span.textContent = c;
-        span.style.marginLeft = "0px";
-        span.addEventListener("focus", activeChar);
+    for (char of dataInput.value) {
+        const span = document.createElement("span");
+        span.textContent = char;
+        span.addEventListener("focus", activateChar);
         span.setAttribute("tabindex", "0");
         showArea.appendChild(span);
     }
 };
 
 document.addEventListener("mousemove", onMouseMove);
-document.addEventListener("mouseup", () => (isDragging = false));
+document.addEventListener("mouseup", onMouseUp);
 dataInput.addEventListener("input", setText);
 
 setText();
