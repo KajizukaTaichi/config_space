@@ -20,19 +20,23 @@ document.addEventListener("mousemove", (e) => {
     startX = e.clientX;
 });
 
-document.addEventListener("mouseup", () => {
-    if (isDragging) {
-        isDragging = false;
-    }
-});
+document.addEventListener("mouseup", () => (isDragging = false));
 
-const setActiveChar = () => {
+const activateChar = () => {
     if (activeChar !== null) {
         activeChar.classList.toggle("active-char");
     }
     activeChar = document.activeElement;
     activeChar.addEventListener("mousedown", onMouseDown);
+    activeChar.dispatchEvent(new Event("mousedown"));
     activeChar.classList.toggle("active-char");
+};
+
+const deactivateChar = () => {
+    if (activeChar !== null) {
+        activeChar.classList.toggle("active-char");
+    }
+    activeChar = null;
 };
 
 const setText = () => {
@@ -41,11 +45,12 @@ const setText = () => {
         let span = document.createElement("span");
         span.textContent = c;
         span.style.marginLeft = "0px";
-        span.addEventListener("focus", setActiveChar);
+        span.addEventListener("focus", activeChar);
         span.setAttribute("tabindex", "0");
         showArea.appendChild(span);
     }
 };
 
+document.addEventListener("click", deactivateChar);
 dataInput.addEventListener("input", setText);
 setText();
