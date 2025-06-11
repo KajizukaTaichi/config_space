@@ -6,7 +6,6 @@ let isDragging = false;
 let activeChar = null;
 
 const onMouseDown = (e) => {
-    console.log("FUCKING JS");
     startX = e.clientX;
     isDragging = true;
 };
@@ -15,7 +14,6 @@ const onMouseMove = (e) => {
     if (!isDragging || activeChar == null) return;
     const diff = e.clientX - startX;
     const orgin = parseInt(activeChar.style.marginLeft.replace("px", ""));
-    console.log(origin);
     activeChar.style.marginLeft = `${orgin + diff}px`;
     startX = e.clientX;
 };
