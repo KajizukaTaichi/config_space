@@ -15,5 +15,5 @@ span {
 }
 
 #show-area {
-    word-break: break-all;
+    word-break: normal;
 }
