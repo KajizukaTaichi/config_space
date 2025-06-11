@@ -1,5 +1,7 @@
 const dataInput = document.getElementById("data-input");
 const showArea = document.getElementById("show-area");
+const fontSize = document.getElementById("font-size");
+const fontFamily = document.getElementById("font-family");
 
 let startX = 0;
 let isDragging = false;
@@ -50,6 +52,10 @@ const setText = () => {
         span.setAttribute("tabindex", "0");
         showArea.appendChild(span);
     }
+};
+
+const setFontSize = () => {
+    `${fontSize.value}px`;
 };
 
 document.addEventListener("mousemove", onMouseMove);
