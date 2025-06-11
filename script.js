@@ -16,8 +16,8 @@ const update_length = () => {
     const value = `${spaceLength.value}px`;
     const regex = new RegExp(targetRegex.value);
     for (span of showArea.children) {
-        if (span.value.match(regex)) {
-            span.style.marginRight = value;
+        if (regex.test(span.textContent)) {
+            span.style.margin = value;
         }
     }
 };
