@@ -1,6 +1,6 @@
 const dataInput = document.getElementById("data-input");
-const targetRegex = document.getElementById("space-length");
-const spaceLength = document.getElementById("target-regex");
+const spaceLength = document.getElementById("space-length");
+const targetRegex = document.getElementById("target-regex");
 const showArea = document.getElementById("show-area");
 
 const set_text = () => {
@@ -13,11 +13,12 @@ const set_text = () => {
 };
 
 const update_length = () => {
+    console.log(targetRegex.value);
     const value = `${spaceLength.value}px`;
     const regex = new RegExp(targetRegex.value);
     for (span of showArea.children) {
-        if (regex.test(span.textContent)) {
-            span.style.margin = value;
+        if (regex.test(span.textContent.toString())) {
+            span.style.marginRight = value;
         }
     }
 };
