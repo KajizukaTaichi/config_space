@@ -10,7 +10,7 @@ const onMouseDown = (e) => {
     isDragging = true;
 };
 
-document.addEventListener("mousemove", (e) => {
+const onMouseMove = (e) => {
     if (!isDragging) return;
     const endX = e.clientX;
     const diff = endX - startX;
@@ -18,9 +18,7 @@ document.addEventListener("mousemove", (e) => {
     const value = `${orgin + diff}px`;
     activeChar.style.marginLeft = value;
     startX = e.clientX;
-});
-
-document.addEventListener("mouseup", () => (isDragging = false));
+};
 
 const activateChar = () => {
     if (activeChar !== null) {
@@ -51,6 +49,8 @@ const setText = () => {
     }
 };
 
-document.addEventListener("click", deactivateChar);
+document.addEventListener("mousemove", onMouseMove);
+document.addEventListener("mouseup", () => (isDragging = false));
 dataInput.addEventListener("input", setText);
+
 setText();
