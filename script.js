@@ -55,11 +55,14 @@ const setText = () => {
 };
 
 const setFontSize = () => {
-    `${fontSize.value}px`;
+    const value = `${fontSize.value}px`;
+    document.documentElement.style.setProperty("--font-size", value);
 };
 
+dataInput.addEventListener("input", setText);
+fontSize.addEventListener("input", setFontSize);
 document.addEventListener("mousemove", onMouseMove);
 document.addEventListener("mouseup", onMouseUp);
-dataInput.addEventListener("input", setText);
 
 setText();
+setFontSize();
