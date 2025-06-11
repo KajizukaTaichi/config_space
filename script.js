@@ -6,17 +6,17 @@ let isDragging = false;
 let activeChar = null;
 
 const onMouseDown = (e) => {
+    console.log("FUCKING JS");
     startX = e.clientX;
     isDragging = true;
 };
 
 const onMouseMove = (e) => {
-    if (!isDragging) return;
-    const endX = e.clientX;
-    const diff = endX - startX;
+    if (!isDragging || activeChar == null) return;
+    const diff = e.clientX - startX;
     const orgin = parseInt(activeChar.style.marginLeft.replace("px", ""));
-    const value = `${orgin + diff}px`;
-    activeChar.style.marginLeft = value;
+    console.log(origin);
+    activeChar.style.marginLeft = `${orgin + diff}px`;
     startX = e.clientX;
 };
 
@@ -47,7 +47,7 @@ const setText = () => {
     showArea.innerHTML = "";
     for (char of dataInput.value) {
         const span = document.createElement("span");
-        span.textContent = char;
+        [span.textContent, span.style.marginLeft] = [char, "0px"];
         span.addEventListener("focus", activateChar);
         span.setAttribute("tabindex", "0");
         showArea.appendChild(span);
